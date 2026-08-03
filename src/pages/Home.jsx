@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { FiArrowRight, FiCheckCircle } from 'react-icons/fi';
 import { SERVICES, PROCESS, FAQS } from '../utils/constants';
+import InteractiveDots from '../components/InteractiveDots';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -24,10 +25,10 @@ export default function Home() {
       {/* HERO SECTION */}
       <section className="relative min-h-[90vh] flex items-center justify-center px-6 overflow-hidden">
         {/* Animated Background Elements */}
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-100 via-white to-white dark:from-blue-900/20 dark:via-[#030712] dark:to-[#030712]"></div>
-        <motion.div animate={{ y: [0, -20, 0] }} transition={{ repeat: Infinity, duration: 5 }} className="absolute top-20 right-[10%] w-64 h-64 bg-primary/20 rounded-full blur-3xl"></motion.div>
-        <motion.div animate={{ y: [0, 30, 0] }} transition={{ repeat: Infinity, duration: 7 }} className="absolute bottom-20 left-[10%] w-72 h-72 bg-accent/20 rounded-full blur-3xl"></motion.div>
+<div className="absolute inset-0 -z-10 bg-gradient-to-br from-blue-100/60 via-blue-50/40 to-blue-200/50 dark:from-blue-900/30 dark:via-[#030712]/80 dark:to-[#030712]/90"></div>
 
+  {/* The new constrained interactive dots */}
+  <InteractiveDots />
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <motion.div initial="hidden" animate="visible" variants={stagger} className="text-center lg:text-left z-10">
             <motion.div variants={fadeUp} className="inline-block px-4 py-1.5 rounded-full glass text-primary font-semibold text-sm mb-6">

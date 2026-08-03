@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { FiSun, FiMoon, FiMenu, FiX, FiArrowUp } from 'react-icons/fi';
+import { FiSun, FiMoon, FiMenu, FiX, FiArrowUp, FiMessageCircle, FiPhone } from 'react-icons/fi';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '../hooks/useTheme';
+// import InteractiveDots from './InteractiveDots';
 
 export default function Layout() {
   const { theme, toggleTheme } = useTheme();
@@ -10,6 +11,10 @@ export default function Layout() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const location = useLocation();
+
+  // Replace with your actual phone number
+  const phoneNumber = "+91 9471158978"; 
+  const phoneUrl = "tel:+919471158978";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,7 +38,11 @@ export default function Layout() {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col relative overflow-hidden">
+    <div className="min-h-screen flex flex-col relative overflow-hidden bg-transparent">
+      
+      {/* 1. THE ZENTRO DOTS BACKGROUND */}
+      {/* <InteractiveDots /> */}
+
       {/* Navbar */}
       <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'glass py-3' : 'bg-transparent py-5'}`}>
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
@@ -43,12 +52,18 @@ export default function Layout() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-8 font-medium">
+          <nav className="hidden lg:flex items-center gap-6 font-medium">
             {navLinks.map((link) => (
               <Link key={link.name} to={link.path} className="hover:text-primary transition-colors">
                 {link.name}
               </Link>
             ))}
+            
+            {/* Desktop Phone Button */}
+            <a href={phoneUrl} className="flex items-center gap-2 px-4 py-2 rounded-full glass hover:border-primary/30 text-sm font-bold transition-all text-primary dark:text-dark-primary">
+              <FiPhone size={16} /> {phoneNumber}
+            </a>
+
             <button onClick={toggleTheme} className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition">
               {theme === 'dark' ? <FiSun size={20} /> : <FiMoon size={20} />}
             </button>
@@ -58,7 +73,7 @@ export default function Layout() {
           </nav>
 
           {/* Mobile Toggle */}
-          <div className="md:hidden flex items-center gap-4">
+          <div className="lg:hidden flex items-center gap-4">
              <button onClick={toggleTheme} className="p-2">
               {theme === 'dark' ? <FiSun size={20} /> : <FiMoon size={20} />}
             </button>
@@ -76,26 +91,32 @@ export default function Layout() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-40 glass pt-24 px-6 flex flex-col gap-6 text-xl font-semibold md:hidden"
+            className="fixed inset-0 z-40 glass pt-24 px-6 flex flex-col gap-6 text-xl font-semibold lg:hidden"
           >
             {navLinks.map((link) => (
               <Link key={link.name} to={link.path} className="border-b border-gray-200 dark:border-gray-800 pb-4">
                 {link.name}
               </Link>
             ))}
-            <Link to="/contact" className="bg-primary text-white px-6 py-3 rounded-full text-center mt-4">
+            
+            {/* Mobile Phone Button (Triggers Mobile Dialer) */}
+            <a href={phoneUrl} className="flex items-center justify-center gap-3 bg-blue-50 dark:bg-gray-800 text-primary dark:text-dark-primary px-6 py-4 rounded-2xl text-center mt-2 border border-blue-100 dark:border-gray-700">
+              <FiPhone size={24} /> Call Us: {phoneNumber}
+            </a>
+
+            <Link to="/contact" className="bg-primary text-white px-6 py-4 rounded-2xl text-center mt-2">
               Book Consultation
             </Link>
           </motion.div>
         )}
       </AnimatePresence>
 
-      <main className="flex-grow pt-20">
+      <main className="flex-grow pt-20 relative z-10">
         <Outlet />
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-gray-200 dark:border-gray-800 pt-16 pb-8 px-6 mt-20">
+      <footer className="border-t border-gray-200 dark:border-gray-800 pt-16 pb-8 px-6 mt-20 relative z-10 glass">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
           <div className="col-span-1 md:col-span-2">
              <Link to="/" className="text-2xl font-bold tracking-tighter flex items-center gap-2 mb-4">
@@ -116,6 +137,7 @@ export default function Layout() {
           <div>
             <h4 className="font-semibold text-lg mb-4">Contact</h4>
             <ul className="space-y-2 text-gray-500 dark:text-gray-400">
+              <li><a href={phoneUrl} className="hover:text-primary">{phoneNumber}</a></li>
               <li>contact@stackmycode.in</li>
               <li>Kolkata, India</li>
             </ul>
@@ -126,21 +148,38 @@ export default function Layout() {
         </div>
       </footer>
 
-      {/* Back to top */}
-      <AnimatePresence>
-        {showScrollTop && (
-          <motion.button
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0 }}
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="fixed bottom-8 right-8 p-3 bg-primary text-white rounded-full shadow-2xl hover:bg-blue-700 z-50"
-            aria-label="Back to top"
-          >
-            <FiArrowUp size={20} />
-          </motion.button>
-        )}
-      </AnimatePresence>
+      {/* Floating Buttons Container */}
+      <div className="fixed bottom-8 right-8 z-50 flex flex-col gap-4">
+        {/* WhatsApp Button */}
+        <motion.a
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          whileHover={{ scale: 1.1 }}
+          href="https://wa.me/919471158978"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-3 bg-green-500 text-white rounded-full shadow-2xl hover:bg-green-600 flex items-center justify-center"
+          aria-label="Chat on WhatsApp"
+        >
+          <FiMessageCircle size={24} />
+        </motion.a>
+
+        {/* Back to top */}
+        <AnimatePresence>
+          {showScrollTop && (
+            <motion.button
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0 }}
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="p-3 bg-primary text-white rounded-full shadow-2xl hover:bg-blue-700"
+              aria-label="Back to top"
+            >
+              <FiArrowUp size={24} />
+            </motion.button>
+          )}
+        </AnimatePresence>
+      </div>
     </div>
   );
 }
