@@ -4,8 +4,12 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   plugins: [
-    tailwindcss(), 
+    tailwindcss(),
     react()
   ],
   base: './', 
+  build: {
+    outDir: 'docs', // This forces Vite to output the finished site to the docs folder
+    emptyOutDir: true, // Clears the folder before each build
+  }
 })
