@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #2563eb;
+  --color-accent: #38bdf8;
+  --color-secondary: #6366f1;
+  --color-dark-bg: #030712;
+  --color-dark-card: #111827;
+  --color-dark-primary: #3b82f6;
+  --color-dark-accent: #60a5fa;
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/70 backdrop-blur-lg border border-white/20 shadow-lg dark:bg-[#111827]/70 dark:border-gray-800/50;
+  }
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent dark:from-dark-primary dark:to-dark-accent;
+  }
+}@import "tailwindcss";
+
+@theme {
+  --color-primary: #2563eb;
+  --color-accent: #38bdf8;
+  --color-secondary: #6366f1;
+  --color-dark-bg: #030712;
+  --color-dark-card: #111827;
+  --color-dark-primary: #3b82f6;
+  --color-dark-accent: #60a5fa;
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/70 backdrop-blur-lg border border-white/20 shadow-lg dark:bg-[#111827]/70 dark:border-gray-800/50;
+  }
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent dark:from-dark-primary dark:to-dark-accent;
+  }
+}
