@@ -35,7 +35,7 @@ jobs:
           
       - name: Install dependencies
         # --no-package-lock forces a fresh install directly from package.json
-        run: npm install --no-package-lock
+        run: npm install --include=dev
         
       - name: Build project
         run: npm run build
