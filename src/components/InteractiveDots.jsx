@@ -1,10 +1,8 @@
 import { useEffect, useRef } from 'react';
-import { useTheme } from '../hooks/useTheme';
 
 export default function InteractiveDots() {
   const canvasRef = useRef(null);
-  const { theme } = useTheme();
-
+  
   useEffect(() => {
     const canvas = canvasRef.current;
     const parent = canvas.parentElement;
@@ -16,7 +14,7 @@ export default function InteractiveDots() {
     let width, height;
 
     const dots = [];
-    const spacing = 18; 
+    const spacing = 16; 
 
     const initDots = () => {
       dots.length = 0;
@@ -28,22 +26,23 @@ export default function InteractiveDots() {
     };
 
     const resize = () => {
+      if (!parent) return;
       width = parent.offsetWidth;
       height = parent.offsetHeight;
+      
       canvas.width = width * dpr;
       canvas.height = height * dpr;
       ctx.scale(dpr, dpr);
+      
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
       initDots();
     };
 
-    const mouse = { x: -1000, y: -1000, radius: 180 };
+    const mouse = { x: -1000, y: -1000, radius: 200 };
 
     const handleMouseMove = (e) => {
-      // Safety check to ensure canvas still exists
       if (!canvasRef.current) return; 
-      
       const rect = canvasRef.current.getBoundingClientRect();
       mouse.x = e.clientX - rect.left;
       mouse.y = e.clientY - rect.top;
@@ -62,8 +61,6 @@ export default function InteractiveDots() {
     };
 
     window.addEventListener('resize', resize);
-    
-    // UPDATED: Listen to the whole window so elements on top don't block the mouse!
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('mouseout', handleMouseLeave);
     
@@ -71,26 +68,34 @@ export default function InteractiveDots() {
 
     const render = () => {
       ctx.clearRect(0, 0, width, height);
-      const dotColor = theme === 'dark' ? 'rgba(255, 255, 255, 0.25)' : 'rgba(13, 75, 210, 0.35)';
+      
+      const isDark = document.documentElement.classList.contains('dark');
+      const dotColor = isDark ? 'rgba(255, 255, 255, 0.25)' : 'rgba(7, 7, 154, 0.35)';
 
       dots.forEach(dot => {
-        let dx = mouse.x - dot.x;
-        let dy = mouse.y - dot.y;
+        // THE FIX: Calculate distance from the mouse to the dot's ORIGINAL grid position
+        let dx = mouse.x - dot.baseX;
+        let dy = mouse.y - dot.baseY;
         let distance = Math.sqrt(dx * dx + dy * dy);
         
-        if (distance < mouse.radius) {
+        let targetX = dot.baseX;
+        let targetY = dot.baseY;
+
+        if (distance < mouse.radius && distance > 0) {
           const force = (mouse.radius - distance) / mouse.radius;
-          const angle = Math.atan2(dy, dx);
           
-          const targetX = dot.x - Math.cos(angle) * force * 22; 
-          const targetY = dot.y - Math.sin(angle) * force * 22;
+          // Set how many pixels they are allowed to shift maximum (prevents clumping)
+          const maxDisplacement = 70; 
+          const displacement = force * maxDisplacement;
           
-          dot.x += (targetX - dot.x) * 0.4;
-          dot.y += (targetY - dot.y) * 0.4;
-        } else {
-          dot.x += (dot.baseX - dot.x) * 0.15;
-          dot.y += (dot.baseY - dot.y) * 0.15;
+          // Calculate precise target coordinate ensuring they maintain relative spacing
+          targetX = dot.baseX - (dx / distance) * displacement;
+          targetY = dot.baseY - (dy / distance) * displacement;
         }
+
+        // Smoothly glide to the target coordinate
+        dot.x += (targetX - dot.x) * 0.2;
+        dot.y += (targetY - dot.y) * 0.2;
 
         ctx.beginPath();
         ctx.arc(dot.x, dot.y, 0.7, 0, Math.PI * 2);
@@ -105,14 +110,12 @@ export default function InteractiveDots() {
 
     return () => {
       window.removeEventListener('resize', resize);
-      // Clean up the window event listeners
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseout', handleMouseLeave);
       clearTimeout(mouseTimeout);
       cancelAnimationFrame(animationFrameId);
     };
-  }, [theme]);
+  }, []);
 
-  // UPDATED: Changed back to pointer-events-none 
   return <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none z-0" />;
 }
