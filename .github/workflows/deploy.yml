@@ -31,10 +31,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: 'npm'
+          # Removed the cache line to prevent false-positive cache hits
           
       - name: Install dependencies
-        run: npm ci
+        # --no-package-lock forces a fresh install directly from package.json
+        run: npm install --no-package-lock
         
       - name: Build project
         run: npm run build
