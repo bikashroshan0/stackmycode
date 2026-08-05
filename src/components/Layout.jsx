@@ -4,7 +4,7 @@ import { FiSun, FiMoon, FiMenu, FiX, FiArrowUp, FiMessageCircle, FiPhone } from 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '../hooks/useTheme';
 // import InteractiveDots from './InteractiveDots';
-import logoImage from '../assets/StackMyCode_Logo_Transparent.png';
+import logoImage from '../assets/StackMyCode_Logo.png';
 
 export default function Layout() {
   const { theme, toggleTheme } = useTheme();
@@ -55,7 +55,7 @@ export default function Layout() {
           <Link
             to="/"
             className="
-    flex items-center
+    inline-flex items-center
     px-4 py-2
     rounded-2xl
     bg-white/8
@@ -197,7 +197,7 @@ export default function Layout() {
             <ul className="space-y-2 text-gray-500 dark:text-gray-400">
               <li><a href={phoneUrl} className="hover:text-primary">{phoneNumber}</a></li>
               <li>contact@stackmycode.in</li>
-              <li>Kolkata, India</li>
+              <li>Siddha Waterfont, khardaha, Kolkata, India</li>
             </ul>
           </div>
         </div>

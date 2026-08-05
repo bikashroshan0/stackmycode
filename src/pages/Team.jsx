@@ -7,7 +7,7 @@ import ashuImage from "../assets/ashu.png";
 const teamMembers = [
     {
     id: 1,
-    name: "Raj Kumar",
+    name: "Raj Kishor Kumar",
     designation: "Business Development Manager",
     image: rajImage,
     description:
@@ -19,7 +19,7 @@ const teamMembers = [
   
   {
     id: 2,
-    name: "Bikash Kumar",
+    name: "Bikash Kumar Roshan",
     designation: "Founder & Technical Lead",
     image: bikashImage,
     description:
