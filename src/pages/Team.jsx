@@ -7,7 +7,7 @@ import ashuImage from "../assets/ashu.png";
 const teamMembers = [
     {
     id: 1,
-    name: "Raj Kishor Kumar",
+    name: "Raj Kishor",
     designation: "Business Development Manager",
     image: rajImage,
     description:

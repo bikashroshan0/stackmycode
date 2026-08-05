@@ -53,34 +53,32 @@ export default function Layout() {
       >
         <div className="max-w-7xl mx-auto h-full px-6 flex items-center justify-between">
           <Link
-            to="/"
-            className="
-    inline-flex items-center
-    px-4 py-2
+  to="/"
+  className="
+    inline-flex
+    items-center
+    px-4
+    py-2
     rounded-2xl
-    bg-white/8
-    border border-white/20
-    backdrop-blur-xl
-    shadow-[0_0_30px_rgba(255,255,255,0.08)]
+    bg-white/30
+    dark:bg-white/35
     transition-all
     duration-300
-    hover:bg-white/12
-    hover:border-white/30
-    hover:shadow-[0_0_40px_rgba(255,255,255,0.15)]
+    hover:bg-white/45
+    dark:hover:bg-white/50
   "
-          >
-            <img
-              src={logoImage}
-              alt="StackMyCode Logo"
-              className="
+>
+  <img
+    src={logoImage}
+    alt="StackMyCode Logo"
+    className="
       h-12
       md:h-14
       w-auto
       object-contain
-      drop-shadow-[0_0_8px_rgba(255,255,255,0.18)]
     "
-            />
-          </Link>
+  />
+</Link>
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-6 font-medium">
@@ -150,36 +148,33 @@ export default function Layout() {
       <footer className="border-t border-gray-200 dark:border-gray-800 pt-16 pb-8 px-6 mt-20 relative z-10 glass">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
           <div className="col-span-1 md:col-span-2">
-            <Link
-              to="/"
-              className="
-        inline-flex
- items-center
-    px-4 py-2
+          <Link
+  to="/"
+  className="
+    inline-flex
+    items-center
+    px-4
+    py-2
     rounded-2xl
-    bg-white/8
-    border border-white/20
-    backdrop-blur-xl
-    shadow-[0_0_30px_rgba(255,255,255,0.08)]
+    bg-white/30
+    dark:bg-white/35
     transition-all
     duration-300
-    hover:bg-white/12
-    hover:border-white/30
-    hover:shadow-[0_0_40px_rgba(255,255,255,0.15)]
+    hover:bg-white/45
+    dark:hover:bg-white/50
   "
-            >
-              <img
-                src={logoImage}
-                alt="StackMyCode Logo"
-                className="
+>
+  <img
+    src={logoImage}
+    alt="StackMyCode Logo"
+    className="
       h-12
       md:h-14
       w-auto
       object-contain
-      drop-shadow-[0_0_8px_rgba(255,255,255,0.18)]
     "
-              />
-            </Link>
+  />
+</Link>
             <p className="text-gray-500 dark:text-gray-400 max-w-sm">
               Building Modern Digital Products That Grow Your Business. Build. Scale. Innovate.
             </p>
