@@ -71,11 +71,11 @@ Please change the parent <Route path="${R}"> to <Route path="${R==="/"?"*":`${R}
     px-4\r
     py-2\r
     rounded-2xl\r
-    bg-white/30\r
-    dark:bg-white/35\r
+    bg-white/20\r
+    dark:bg-white/20\r
     transition-all\r
     duration-300\r
-    hover:bg-white/45\r
+    hover:bg-white/30\r
     dark:hover:bg-white/50\r
   `,children:S.jsx("img",{src:g0,alt:"StackMyCode Logo",className:`\r
       h-12\r
@@ -88,11 +88,11 @@ Please change the parent <Route path="${R}"> to <Route path="${R==="/"?"*":`${R}
     px-4\r
     py-2\r
     rounded-2xl\r
-    bg-white/30\r
-    dark:bg-white/35\r
+    bg-white/20\r
+    dark:bg-white/20\r
     transition-all\r
     duration-300\r
-    hover:bg-white/45\r
+    hover:bg-white/30\r
     dark:hover:bg-white/50\r
   `,children:S.jsx("img",{src:g0,alt:"StackMyCode Logo",className:`\r
       h-12\r

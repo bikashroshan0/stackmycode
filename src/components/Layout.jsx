@@ -60,11 +60,11 @@ export default function Layout() {
     px-4
     py-2
     rounded-2xl
-    bg-white/30
-    dark:bg-white/35
+    bg-white/20
+    dark:bg-white/20
     transition-all
     duration-300
-    hover:bg-white/45
+    hover:bg-white/30
     dark:hover:bg-white/50
   "
 >
@@ -156,11 +156,11 @@ export default function Layout() {
     px-4
     py-2
     rounded-2xl
-    bg-white/30
-    dark:bg-white/35
+    bg-white/20
+    dark:bg-white/20
     transition-all
     duration-300
-    hover:bg-white/45
+    hover:bg-white/30
     dark:hover:bg-white/50
   "
 >
