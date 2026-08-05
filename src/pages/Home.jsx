@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { FiArrowRight, FiCheckCircle, FiAward } from 'react-icons/fi';
 import { SERVICES, PROCESS, FAQS } from '../utils/constants';
+import Team from './Team';
 import InteractiveDots from '../components/InteractiveDots';
+import { FaFacebookF, FaTwitter, FaLinkedinIn } from 'react-icons/fa';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -144,6 +146,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+      {/* Our Team Section */}
+      <Team />
     </>
   );
 }

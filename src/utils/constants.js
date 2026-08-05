@@ -4,7 +4,7 @@ import React from 'react';
 export const SERVICES = [
   { id: 1, title: 'Website Development', desc: 'High-performance, SEO-optimized static and dynamic websites tailored for your brand.', icon: React.createElement(FiMonitor) },
   { id: 2, title: 'Custom Web Apps', desc: 'Scalable and secure web applications built with modern JavaScript frameworks.', icon: React.createElement(FiSmartphone) },
-  { id: 3, title: 'E-Commerce', desc: 'Conversion-optimized online stores with secure payment gateways and inventory management.', icon: React.createElement(FiShoppingBag) },
+  { id: 3, title: 'Mobile App Development', desc: 'Develops cross-platform mobile applications using Flutter, delivering seamless Android and iOS experiences with a focus on performance and usability..', icon: React.createElement(FiSmartphone) },
   { id: 4, title: 'UI/UX Design', desc: 'Premium, user-centric interfaces that engage users and elevate your digital presence.', icon: React.createElement(FiLayout) },
   { id: 5, title: 'Website Maintenance', desc: 'Continuous updates, security patches, and performance optimization for your platforms.', icon: React.createElement(FiTool) },
   { id: 6, title: 'Cloud Deployment', desc: 'Reliable cloud infrastructure setup using AWS, Vercel, and modern CI/CD pipelines.', icon: React.createElement(FiCloud) },

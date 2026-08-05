@@ -86,7 +86,7 @@ export default function Contact() {
                     <select name="service" className="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border border-transparent focus:border-primary outline-none transition-all">
                       <option>Website Development</option>
                       <option>Web Application</option>
-                      <option>E-Commerce</option>
+                      <option>Mobile App Devlopment</option>
                       <option>UI/UX Design</option>
                       <option>Other</option>
                     </select>
