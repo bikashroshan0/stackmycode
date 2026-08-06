@@ -4,6 +4,7 @@ import { FiSun, FiMoon, FiMenu, FiX, FiArrowUp, FiMessageCircle, FiPhone } from 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '../hooks/useTheme';
 // import InteractiveDots from './InteractiveDots';
+import logoImage from '../assets/StackMyCode_Logo.png';
 
 export default function Layout() {
   const { theme, toggleTheme } = useTheme();
@@ -13,8 +14,8 @@ export default function Layout() {
   const location = useLocation();
 
   // Replace with your actual phone number
-  const phoneNumber = "+91 9471158978"; 
-  const phoneUrl = "tel:+919471158978";
+  const phoneNumber = "+91 9199541185";
+  const phoneUrl = "tel:+919199541185";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,17 +40,45 @@ export default function Layout() {
 
   return (
     <div className="min-h-screen flex flex-col relative overflow-hidden bg-transparent">
-      
+
       {/* 1. THE ZENTRO DOTS BACKGROUND */}
       {/* <InteractiveDots /> */}
 
       {/* Navbar */}
-      <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'glass py-3' : 'bg-transparent py-5'}`}>
-        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-          <Link to="/" className="text-2xl font-bold tracking-tighter flex items-center gap-2">
-            <span className="text-primary dark:text-dark-primary text-3xl">⬢</span>
-            StackMyCode
-          </Link>
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
+          ? "glass h-20"
+          : "bg-transparent h-20"
+          }`}
+      >
+        <div className="max-w-7xl mx-auto h-full px-6 flex items-center justify-between">
+          <Link
+  to="/"
+  className="
+    inline-flex
+    items-center
+    px-4
+    py-2
+    rounded-2xl
+    bg-white/20
+    dark:bg-white/20
+    transition-all
+    duration-300
+    hover:bg-white/30
+    dark:hover:bg-white/50
+  "
+>
+  <img
+    src={logoImage}
+    alt="StackMyCode Logo"
+    className="
+      h-12
+      md:h-14
+      w-auto
+      object-contain
+    "
+  />
+</Link>
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-6 font-medium">
@@ -58,7 +87,7 @@ export default function Layout() {
                 {link.name}
               </Link>
             ))}
-            
+
             {/* Desktop Phone Button */}
             <a href={phoneUrl} className="flex items-center gap-2 px-4 py-2 rounded-full glass hover:border-primary/30 text-sm font-bold transition-all text-primary dark:text-dark-primary">
               <FiPhone size={16} /> {phoneNumber}
@@ -74,7 +103,7 @@ export default function Layout() {
 
           {/* Mobile Toggle */}
           <div className="lg:hidden flex items-center gap-4">
-             <button onClick={toggleTheme} className="p-2">
+            <button onClick={toggleTheme} className="p-2">
               {theme === 'dark' ? <FiSun size={20} /> : <FiMoon size={20} />}
             </button>
             <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
@@ -87,7 +116,7 @@ export default function Layout() {
       {/* Mobile Menu */}
       <AnimatePresence>
         {mobileMenuOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -98,7 +127,7 @@ export default function Layout() {
                 {link.name}
               </Link>
             ))}
-            
+
             {/* Mobile Phone Button (Triggers Mobile Dialer) */}
             <a href={phoneUrl} className="flex items-center justify-center gap-3 bg-blue-50 dark:bg-gray-800 text-primary dark:text-dark-primary px-6 py-4 rounded-2xl text-center mt-2 border border-blue-100 dark:border-gray-700">
               <FiPhone size={24} /> Call Us: {phoneNumber}
@@ -119,9 +148,33 @@ export default function Layout() {
       <footer className="border-t border-gray-200 dark:border-gray-800 pt-16 pb-8 px-6 mt-20 relative z-10 glass">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
           <div className="col-span-1 md:col-span-2">
-             <Link to="/" className="text-2xl font-bold tracking-tighter flex items-center gap-2 mb-4">
-              <span className="text-primary text-3xl">⬢</span> StackMyCode
-            </Link>
+          <Link
+  to="/"
+  className="
+    inline-flex
+    items-center
+    px-4
+    py-2
+    rounded-2xl
+    bg-white/20
+    dark:bg-white/20
+    transition-all
+    duration-300
+    hover:bg-white/30
+    dark:hover:bg-white/50
+  "
+>
+  <img
+    src={logoImage}
+    alt="StackMyCode Logo"
+    className="
+      h-12
+      md:h-14
+      w-auto
+      object-contain
+    "
+  />
+</Link>
             <p className="text-gray-500 dark:text-gray-400 max-w-sm">
               Building Modern Digital Products That Grow Your Business. Build. Scale. Innovate.
             </p>
@@ -139,7 +192,7 @@ export default function Layout() {
             <ul className="space-y-2 text-gray-500 dark:text-gray-400">
               <li><a href={phoneUrl} className="hover:text-primary">{phoneNumber}</a></li>
               <li>contact@stackmycode.in</li>
-              <li>Kolkata, India</li>
+              <li>Siddha Waterfont, khardaha, Kolkata, India</li>
             </ul>
           </div>
         </div>
@@ -155,7 +208,7 @@ export default function Layout() {
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
           whileHover={{ scale: 1.1 }}
-          href="https://wa.me/919471158978"
+          href="https://wa.me/919199541185"
           target="_blank"
           rel="noopener noreferrer"
           className="p-3 bg-green-500 text-white rounded-full shadow-2xl hover:bg-green-600 flex items-center justify-center"

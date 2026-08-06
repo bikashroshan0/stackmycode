@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { FiArrowRight, FiCheckCircle, FiAward } from 'react-icons/fi';
 import { SERVICES, PROCESS, FAQS } from '../utils/constants';
+import Team from './Team';
 import InteractiveDots from '../components/InteractiveDots';
+import { FaFacebookF, FaTwitter, FaLinkedinIn } from 'react-icons/fa';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -100,9 +102,9 @@ export default function Home() {
                 </div>
                 <h3 className="text-2xl font-bold mb-4">{srv.title}</h3>
                 <p className="text-gray-600 dark:text-gray-400 mb-6">{srv.desc}</p>
-                <Link to="/contact" className="text-primary font-semibold flex items-center gap-2 group-hover:gap-4 transition-all">
+                {/* <Link to="/contact" className="text-primary font-semibold flex items-center gap-2 group-hover:gap-4 transition-all">
                   Learn More <FiArrowRight />
-                </Link>
+                </Link> */}
               </motion.div>
             ))}
           </motion.div>
@@ -144,6 +146,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+      {/* Our Team Section */}
+      <Team />
     </>
   );
 }
