@@ -13,11 +13,17 @@ export default function Contact() {
     setStatus('loading');
 
     // EmailJS implementation (Replace with your actual keys in production)
-    emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', formRef.current, 'YOUR_PUBLIC_KEY')
-      .then(() => {
-        setStatus('success');
-        formRef.current.reset();
-      })
+    emailjs.sendForm(
+      'service_8paigup',
+      'template_o7n57xa',
+      formRef.current,
+      {
+        publicKey: 'JfGoBtOaHpNz5AWuf',
+      }
+    ).then(() => {
+      setStatus('success');
+      formRef.current.reset();
+    })
       .catch(() => {
         setStatus('error');
       });
@@ -37,17 +43,17 @@ export default function Contact() {
             <p className="text-xl text-gray-600 dark:text-gray-400 mb-12">
               Tell us about your project, budget, and timeline. Our team will get back to you within 24 hours.
             </p>
-            
+
             <div className="space-y-6">
               <div className="flex items-center gap-4 text-lg">
-                <div className="w-12 h-12 rounded-full glass flex items-center justify-center text-primary"><FiMail size={24}/></div>
+                <div className="w-12 h-12 rounded-full glass flex items-center justify-center text-primary"><FiMail size={24} /></div>
                 <div>
                   <p className="font-bold">Email Us</p>
                   <p className="text-gray-600 dark:text-gray-400">contact@stackmycode.in</p>
                 </div>
               </div>
               <div className="flex items-center gap-4 text-lg">
-                <div className="w-12 h-12 rounded-full glass flex items-center justify-center text-primary"><FiMapPin size={24}/></div>
+                <div className="w-12 h-12 rounded-full glass flex items-center justify-center text-primary"><FiMapPin size={24} /></div>
                 <div>
                   <p className="font-bold">Location</p>
                   <p className="text-gray-600 dark:text-gray-400">Kolkata, West Bengal, India</p>
@@ -75,6 +81,23 @@ export default function Contact() {
                     <label className="block text-sm font-semibold mb-2">Email Address</label>
                     <input required name="user_email" type="email" className="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border border-transparent focus:border-primary outline-none transition-all" placeholder="john@company.com" />
                   </div>
+                  <div>
+                    <label className="block text-sm font-semibold mb-2">Phone Number</label>
+                    <input
+                      required
+                      name="phoneNumber"
+                      type="tel"
+                      inputMode="numeric"
+                      pattern="[6-9][0-9]{9}"
+                      maxLength={10}
+                      className="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border border-transparent focus:border-primary outline-none transition-all"
+                      placeholder="9876543210"
+                      title="Please enter a valid 10-digit Indian mobile number"
+                      onInput={(e) => {
+                        e.target.value = e.target.value.replace(/\D/g, '').slice(0, 10);
+                      }}
+                    />
+                  </div>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
@@ -96,7 +119,7 @@ export default function Contact() {
                   <label className="block text-sm font-semibold mb-2">Message</label>
                   <textarea required name="message" rows="4" className="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border border-transparent focus:border-primary outline-none transition-all resize-none" placeholder="Tell us about your project goals..."></textarea>
                 </div>
-                
+
                 {status === 'error' && (
                   <p className="text-red-500 flex items-center gap-2"><FiAlertCircle /> Something went wrong. Please email us directly.</p>
                 )}
